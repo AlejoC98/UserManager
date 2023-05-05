@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const url = require('url');
 // Initialiazing
 const app = express();
 const Port = 4000;
@@ -17,34 +18,61 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 // accessing
-const readStream = fs.createReadStream('users.json');
-const writeStream = fs.createWriteStream('users.json', { flags: 'a'});
+const content = {
+    'users': []
+}
+const file_data = fs.readFileSync('users.json');
 
-function readUserFile() {
-    readStream.on('data', chunk => {
-        if (chunk)
-            console.log(chunk);
-    });
-    
+try {
+    content.users = JSON.parse(file_data).users;
+} catch (error) {
+    console.log('File empty');
 }
 
-let users = [];
-
 app.get('/', (req, res) => {
-    readUserFile();
-    res.render('index');
+    res.render('index', {active: 'index'});
+});
+
+app.get('/Users', (req, res) => {
+    res.render('list', {active: 'users', content: content.users});
+});
+
+app.get('/Edit', (req, res) => {
+
+    const params = url.parse(req.url, true).query;
+    // const current_user = content.users.find(u => u.uniqueId === params.id);
+    if (current_user = content.users.find(u => u.uniqueId === params.id)) {
+        res.render('edit', {user: current_user});
+    } else {
+        res.status(400);
+    }
 });
 
 app.post('/createUser', (req, res) => {
     // const {username, name, email, age} = req.body;
-    users.push({
-        ...req.body,
-        'uniqueId' : uuidv4()
+    content.users.push({
+        'uniqueId' : uuidv4(),
+        ...req.body
     });
 
-    writeStream.write(JSON.stringify(users));
+    fs.writeFile('users.json', JSON.stringify(content), () => {
+        res.redirect('Users');
+    });
+});
 
-    res.redirect('index');
+app.post('/update', (req, res) => {
+    const {uniqueId, username, name, email, age} = req.body;
+    
+    if (current_user = content.users.find(u => u.uniqueId === uniqueId)) {
+        const position = content.users.indexOf(current_user);
+        content.users[position] = {
+            ...req.body
+        }
+    }
+
+    fs.writeFile('users.json', JSON.stringify(content), () => {
+        res.redirect('Users');
+    });
 
 });
 

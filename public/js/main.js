@@ -28,3 +28,16 @@ function validateForm() {
             event.preventDefault();
     });
 }
+
+function search() {
+    var key = event.target.value.toLocaleLowerCase();
+    console.log(event.target.value);
+    document.querySelectorAll('#user-data tbody tr').forEach((row) => {
+        var row_columns = Array(...row.querySelectorAll('td'));
+        if (row_columns.find((t) => t.textContent.toLocaleLowerCase().includes(key))) {
+            row.classList.remove('d-none');
+        } else {
+            row.classList.add('d-none');
+        }
+    });
+}

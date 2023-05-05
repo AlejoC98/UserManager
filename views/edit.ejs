@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Manager</title>
+    <title>Document</title>
     <%- include('../components/header') %>
 </head>
-
 <body>
-    <main class="container-fluid main-container">
-        <%- include('../components/nav', {active : active}) %>
+    <main class="container-fuild main-container">
         <div class="action-menu">
-            <h1 class="text-center text-white mb-5">Create User</h1>
-            <form action="/createUser" id="createUserForm" onsubmit="validateForm()" method="POST">
+            <div class="action-header  mb-5">
+                <a href="/Users" class="text-white text-decoration-none">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <h1 class="text-center text-white ">Edit Users</h1>
+            </div>
+            <form action="/update" id="createUserForm" onsubmit="validateForm()" method="POST">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username" aria-describedby="usernameHelp" name="username">
+                    <input type="hidden" class="form-control" name="uniqueId" value="<%= user.uniqueId %>">
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username" aria-describedby="usernameHelp" name="username" value="<%= user.username %>">
                     <label for="floatingUsername">Username</label>
                     <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingName" placeholder="Name" name="name">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Name" name="name" value="<%= user.name %>">
                     <label for="floatingName">Name</label>
                     <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" name="email">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" name="email" value="<%= user.email %>">
                     <label for="floatingEmail">Email address</label>
                     <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="floatingAge" placeholder="Age" min="0" name="age">
+                    <input type="number" class="form-control" id="floatingAge" placeholder="Age" min="0" name="age" value="<%= user.age %>">
                     <label for="floatingAge">Age</label>
                     <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
                 </div>
-                
                 <div class="d-grid gap-2">
-                    <button class="btn btn-darkgreen btn-lg">Create</button>
+                    <button class="btn btn-darkgreen btn-lg">Update</button>
                 </div>
             </form>
         </div>
     </main>
 </body>
-
 </html>

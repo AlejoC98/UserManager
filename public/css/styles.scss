@@ -6,10 +6,23 @@
     color: #ffffff;
 }
 
+.btn-darkgreen:hover {
+    background-color: #7c8b49;
+    color: #ffffff
+}
+
 .btn-outline-darkgreen {
     @extend .btn-outline-primary;
     border-color: #606c38;
     color: #606c38;
+}
+
+.btn-edit {
+    color: #ffffff;
+}
+
+.btn-edit:hover {
+    color: #c0c0c0;
 }
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
@@ -22,12 +35,29 @@
     background-color: #bc6c25;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     // align-items: center;
     padding-top: 5rem;
 
-    .action-menu {
+    .buttons-section {
         width: 600px;
+        display: flex;
+        justify-content: center;
+        
+        .custom-nav {
+            a {
+                color: #ffffff !important;
+            }
+
+            a.active {
+                color: #606c38 !important;
+            }
+        }
+    }
+
+    .action-menu {
+        width: 800px;
 
         nav #nav-tab button {
             width: 33.3%;
@@ -35,6 +65,15 @@
         }
         .tab-pane {
             padding-top: 2rem;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h1 {
+                margin-left: 5rem;
+            }
         }
 
     }

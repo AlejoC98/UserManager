@@ -11925,9 +11925,22 @@ textarea.form-control-lg {
   color: #ffffff;
 }
 
+.btn-darkgreen:hover {
+  background-color: #7c8b49;
+  color: #ffffff;
+}
+
 .btn-outline-darkgreen {
   border-color: #606c38;
   color: #606c38;
+}
+
+.btn-edit {
+  color: #ffffff;
+}
+
+.btn-edit:hover {
+  color: #c0c0c0;
 }
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
@@ -11940,11 +11953,23 @@ textarea.form-control-lg {
   background-color: #bc6c25;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-top: 5rem;
 }
-.main-container .action-menu {
+.main-container .buttons-section {
   width: 600px;
+  display: flex;
+  justify-content: center;
+}
+.main-container .buttons-section .custom-nav a {
+  color: #ffffff !important;
+}
+.main-container .buttons-section .custom-nav a.active {
+  color: #606c38 !important;
+}
+.main-container .action-menu {
+  width: 800px;
 }
 .main-container .action-menu nav #nav-tab button {
   width: 33.3%;
@@ -11952,6 +11977,14 @@ textarea.form-control-lg {
 }
 .main-container .action-menu .tab-pane {
   padding-top: 2rem;
+}
+.main-container .action-menu .action-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .action-menu .action-header h1, .main-container .action-menu .action-header .h1 {
+  margin-left: 5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

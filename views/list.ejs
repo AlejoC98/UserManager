@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('../components/header', {active : active}) %>
+</head>
+<body>
+    <main class="container-fluid main-container">
+        <%- include('../components/nav') %>
+        <div class="action-menu">
+            <h1 class="text-center text-white">Users</h1>
+            <div class="input-group mb-5">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" onkeyup="search()">
+            </div>
+            <table class="table" id="user-data">
+                <thead>
+                <tr class="text-white">
+                    <th scope="col">#ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% content.forEach((user) => { %> 
+                        <tr class="text-white">
+                            <th scope="row"><%= user.uniqueId %></th>
+                            <td><%= user.username %></td>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.age %></td>
+                            <td>
+                                <a href="/Edit?id=<%= user.uniqueId %>" class="btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <%}) %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
