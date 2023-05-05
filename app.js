@@ -76,6 +76,20 @@ app.post('/update', (req, res) => {
 
 });
 
+app.post('/delete', (req, res) => {
+    const { uniqueId } = req.body;
+
+    if (current_user = content.users.find(u => u.uniqueId === uniqueId)) {
+        const position = content.users.indexOf(current_user);
+        content.users.splice(position, 1);
+    }
+
+    fs.writeFile('users.json', JSON.stringify(content), () => {
+        res.redirect('Users');
+    });
+
+});
+
 
 app.listen(Port, () => {
     console.log(`Server running on http://localhost:${Port}`);

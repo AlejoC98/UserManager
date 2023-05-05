@@ -1,3 +1,8 @@
+
+const myModal = document.getElementById('Confirmation');
+
+var modal = new bootstrap.Modal(myModal);
+
 document.querySelectorAll('#createUserForm input, #createUserForm select').forEach((el) => {
     el.addEventListener('blur', () => {
         validateFormFields(el);
@@ -40,4 +45,10 @@ function search() {
             row.classList.add('d-none');
         }
     });
+}
+
+function deleteUser(id) {
+
+    myModal.querySelector('input').value = id;
+    modal.show();
 }

@@ -12,39 +12,70 @@
         <%- include('../components/nav') %>
         <div class="action-menu">
             <h1 class="text-center text-white">Users</h1>
-            <div class="input-group mb-5">
-                <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" onkeyup="search()">
-            </div>
-            <table class="table" id="user-data">
-                <thead>
-                <tr class="text-white">
-                    <th scope="col">#ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Age</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <% content.forEach((user) => { %> 
-                        <tr class="text-white">
-                            <th scope="row"><%= user.uniqueId %></th>
-                            <td><%= user.username %></td>
-                            <td><%= user.name %></td>
-                            <td><%= user.email %></td>
-                            <td><%= user.age %></td>
-                            <td>
-                                <a href="/Edit?id=<%= user.uniqueId %>" class="btn-edit">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <%}) %>
-                </tbody>
-            </table>
+            <% if (content.length > 0){
+                %> 
+                <div class="input-group mb-5">
+                    <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Username" aria-describedby="basic-addon1" onkeyup="search()">
+                </div>
+                <table class="table" id="user-data">
+                    <thead>
+                    <tr class="text-white">
+                        <th scope="col">#ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Age</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% content.forEach((user) => { %> 
+                            <tr class="text-white">
+                                <th scope="row"><%= user.uniqueId %></th>
+                                <td><%= user.username %></td>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.age %></td>
+                                <td>
+                                    <a href="/Edit?id=<%= user.uniqueId %>" class="btn-edit">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn-edit" onclick="deleteUser('<%= user.uniqueId %>')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <%}) %>
+                    </tbody>
+                </table>
+                <%
+            } else {
+                %>
+                <h2 class="text-white text-center">There's not users created yet!</h2>
+                <%
+            } %>            
         </div>
     </main>
+
+    <div class="modal fade" id="Confirmation" tabindex="-1" aria-labelledby="ConfirmationLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+                <h4>Are you sure you want to delete this user?</h4>
+                <form action="/delete" method="Post" id="deleteUserForm">
+                    <input type="hidden" name="uniqueId">
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" form="deleteUserForm" class="btn btn-danger">delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
