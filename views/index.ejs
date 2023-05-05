@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>User Manager</title>
+    <script src="/js/bootstrap.min.js"></script>
+    <script defer src="/js/main.js"></script>
+</head>
+
+<body>
+    <main class="container-fluid main-container">
+        <div class="action-menu">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-create-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-create" type="button" role="tab" aria-controls="nav-create"
+                        aria-selected="true">Create</button>
+                    <button class="nav-link" id="nav-view-tab" data-bs-toggle="tab" data-bs-target="#nav-view"
+                        type="button" role="tab" aria-controls="nav-view" aria-selected="false">View</button>
+                    <button class="nav-link" id="nav-edit-tab" data-bs-toggle="tab" data-bs-target="#nav-edit"
+                        type="button" role="tab" aria-controls="nav-edit" aria-selected="false">Edit</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab"
+                    tabindex="0">
+                    <form action="/createUser" id="createUserForm" onsubmit="validateForm()" method="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingUsername" placeholder="Username" aria-describedby="usernameHelp" name="username">
+                            <label for="floatingUsername">Username</label>
+                            <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingName" placeholder="Name" name="name">
+                            <label for="floatingName">Name</label>
+                            <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" name="email">
+                            <label for="floatingEmail">Email address</label>
+                            <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="floatingAge" placeholder="Age" min="0" name="age">
+                            <label for="floatingAge">Age</label>
+                            <div id="usernameHelp" class="form-text d-none text-danger">This field is required!.</div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-darkgreen btn-lg">Create</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="nav-view" role="tabpanel" aria-labelledby="nav-view-tab" tabindex="0">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+                <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab" tabindex="0">
+                    Edit</div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

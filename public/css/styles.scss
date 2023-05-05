@@ -1,0 +1,41 @@
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+.btn-darkgreen {
+    @extend .btn;
+    background-color: #606c38;
+    color: #ffffff;
+}
+
+.btn-outline-darkgreen {
+    @extend .btn-outline-primary;
+    border-color: #606c38;
+    color: #606c38;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    background-color: #dda15e !important;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.main-container {
+    background-color: #bc6c25;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    padding-top: 5rem;
+
+    .action-menu {
+        width: 600px;
+
+        nav #nav-tab button {
+            width: 33.3%;
+            color: #ffffff;
+        }
+        .tab-pane {
+            padding-top: 2rem;
+        }
+
+    }
+}
