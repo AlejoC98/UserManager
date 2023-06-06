@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const url = require('url');
 // Initialiazing
 const app = express();
-const Port = 4000;
+const Port = 3000;
 
 // Setting the view engine
 app.set('views', './views');
